@@ -2,11 +2,29 @@
 
 ## Подготовка к выполнению
 1. Установите ansible версии 2.10 или выше.
-2. Создайте свой собственный публичный репозиторий на github с произвольным именем.
+[gkublock@fedora mnt-homeworks]$ ansible --version
+ansible [core 2.14.1]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/gkublock/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.11/site-packages/ansible
+  ansible collection location = /home/gkublock/.ansible/collections:/usr/share/ansible/collections
+  executable location = /usr/bin/ansible
+  python version = 3.11.1 (main, Jan  6 2023, 00:00:00) [GCC 12.2.1 20221121 (Red Hat 12.2.1-4)] (/usr/bin/python3)
+  jinja version = 3.0.3
+  libyaml = True
+
+2. Создайте свой собственный публичный репозиторий на github с произвольным именем.  https://github.com/Gkublock/mnt-homeworks
 3. Скачайте [playbook](./playbook/) из репозитория с домашним заданием и перенесите его в свой репозиторий.
 
 ## Основная часть
 1. Попробуйте запустить playbook на окружении из `test.yml`, зафиксируйте какое значение имеет факт `some_fact` для указанного хоста при выполнении playbook'a.
+TASK [Print fact] **********************************************************************************************************************************************************************************************************************
+ok: [localhost] => {
+    "msg": 12
+}
+
+
+
 2. Найдите файл с переменными (group_vars) в котором задаётся найденное в первом пункте значение и поменяйте его на 'all default fact'.
 3. Воспользуйтесь подготовленным (используется `docker`) или создайте собственное окружение для проведения дальнейших испытаний.
 4. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
