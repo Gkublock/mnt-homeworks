@@ -5,5 +5,8 @@
         ansible_connection: docker
   deb:
     hosts:
-      ubuntu:
+      loving_sinoussi:
         ansible_connection: docker
+  local:
+    hosts:
+      localhost
