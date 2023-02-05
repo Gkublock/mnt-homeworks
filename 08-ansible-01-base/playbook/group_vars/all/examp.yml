@@ -1,3 +1,2 @@
 ansible_user: gkublock
-ansible_password: 7355608qwe!@#
 some_fact: all default fact
