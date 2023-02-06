@@ -87,6 +87,44 @@ loving_sinoussi            : ok=3    changed=0    unreachable=0    failed=0    s
 9. Посмотрите при помощи `ansible-doc` список плагинов для подключения. Выберите подходящий для работы на `control node`. ansible-doc -t inventory -l
 10. В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения.
 11. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь что факты `some_fact` для каждого из хостов определены из верных `group_vars`.
+[gkublock@fedora playbook]$ ansible-playbook -i inventory/prod.yml -c docker --ask-vault-password -k site.yml
+SSH password: 
+Vault password: 
+
+PLAY [Print os facts] *************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************
+ok: [loving_sinoussi]
+ok: [centos]
+ok: [localhost]
+
+TASK [Print OS] *******************************************************************************************************************************************************
+ok: [centos] => {
+    "msg": "CentOS"
+}
+ok: [loving_sinoussi] => {
+    "msg": "Ubuntu"
+}
+ok: [localhost] => {
+    "msg": "Fedora"
+}
+
+TASK [Print fact] *****************************************************************************************************************************************************
+ok: [centos] => {
+    "msg": "el default fac"
+}
+ok: [loving_sinoussi] => {
+    "msg": "deb default fac"
+}
+ok: [localhost] => {
+    "msg": "all default fact"
+}
+
+PLAY RECAP ************************************************************************************************************************************************************
+centos                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+loving_sinoussi            : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
 12. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.
 
 ## Необязательная часть

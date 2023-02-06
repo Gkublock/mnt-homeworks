@@ -9,4 +9,5 @@
         ansible_connection: docker
   local:
     hosts:
-      localhost
+      localhost:
+        ansible_connection: ssh
