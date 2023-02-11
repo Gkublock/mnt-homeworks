@@ -1,0 +1,28 @@
+- name: get base url
+  hosts: vector
+  tasks:
+    - name: Get tar
+      ansible.builtin.get_url:
+        url: "https://packages.timber.io/vector/{{ version }}/vector-{{ version }}-{{ arch }}-unknown-linux-gnu.tar.gz"
+        dest: "./vector-{{ version }}-{{ arch }}-unknown-linux-gnu.tar.gz"
+      tags: install, configure
+    - name: Copy to remote
+      ansible.builtin.copy:
+        src: "./vector-{{ version }}-{{ arch }}-unknown-linux-gnu.tar.gz"
+        dest: "/tmp/vector-{{ version }}-{{ arch }}-unknown-linux-gnu.tar.gz"
+        remote_src: yes
+    - name: Extract archive
+      become: true
+      ansible.builtin.unarchive:
+        src: "/tmp/vector-{{ version }}-{{ arch }}-unknown-linux-gnu.tar.gz"
+        dest: "{{ install_path }}"
+        remote_src: yes
+      tags: install, configure
+    - name: Configure
+      become: true
+      ansible.builtin.template:
+        src: templates/vector/vector.toml
+        dest: "{{ install_path }}/vector-{{ arch }}-unknown-linux-gnu/config/vector.toml"
+        mode: 0777
+      tags: install, configure
+
