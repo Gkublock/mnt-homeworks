@@ -14,6 +14,12 @@
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
 4. Tasks должны: скачать нужной версии дистрибутив, выполнить распаковку в выбранную директорию, установить vector.
 5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
+ Исправлено, единственную ошибку отбивает на имена
+[gkublock@fedora playbook]$ ansible-lint site.yml
+WARNING  Overriding detected file kind 'yaml' with 'playbook' for given positional argument: site.yml
+WARNING  Listing 4 violation(s) that are fatal
+name[missing]: All tasks should be named.
+ Но с ними все вроде как ОК, плейбук отрабатывает
 6. Попробуйте запустить playbook на этом окружении с флагом `--check`. -  Падает с ошибкой, т.к. при опции check не производится скачивание файла
 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
 [gkublock@fedora pycharm-community-2022.3.2]$ ls /opt/vector/vector-x86_64-unknown-linux-gnu/
