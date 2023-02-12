@@ -26,6 +26,7 @@
    производится скачивание файла
 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
    [gkublock@fedora pycharm-community-2022.3.2]$ ls /opt/vector/vector-x86_64-unknown-linux-gnu/
+
    bin config etc LICENSE README.md
    [gkublock@fedora playbook]$ ansible-playbook -i inventory/prod.yml -K vector.yml --diff --tags install
    BECOME password:
