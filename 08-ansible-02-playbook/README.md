@@ -21,71 +21,14 @@
    WARNING Overriding detected file kind 'yaml' with 'playbook' for given positional argument: site.yml
    WARNING Listing 4 violation(s) that are fatal
    name[missing]: All tasks should be named.
-   ___Но с ними все вроде как ОК, плейбук отрабатывает___
-6. ***Попробуйте запустить playbook на этом окружении с флагом `--check`.*** 
-___Падает с ошибкой, т.к. при опции check не производится скачивание файла___
-7. ***Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.***
-
- [gkublock@fedora pycharm-community-2022.3.2]$ ls /opt/vector/vector-x86_64-unknown-linux-gnu/
- ____
-   bin config etc LICENSE README.md
-
-[gkublock@fedora playbook]$ ansible-playbook -i inventory/prod.yml -K vector.yml --diff --tags install
-____
-BECOME password:
-
-PLAY [get base url] 
-TASK [Gathering Facts]
-
-ok: [vector-01]
-____
-TASK [Get tar] 
-
-ok: [vector-01]
-____
-TASK [Extract archive] 
-
-ok: [vector-01]
-____
-TASK [Configure] 
---- before: /opt/vector/vector-x86_64-unknown-linux-gnu/config/vector.toml
-+++ after: /home/gkublock/.ansible/tmp/ansible-local-8940cg9r5y6o/tmpz2i5j5ws/vector.toml
-changed: [vector-01]
-____
-PLAY
-RECAP 
-vector-01                  : ok=4 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
-____
-
+   Но с ними все вроде как ОК, плейбук отрабатывает
+6. Попробуйте запустить playbook на этом окружении с флагом `--check`. 
+- Падает с ошибкой, т.к. при опции check не
+   производится скачивание файла
+7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
+ Лог находится в файле Ansible_log_7_task.txt
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
-
-   [gkublock@fedora playbook]$ ansible-playbook -i inventory/prod.yml -K vector.yml --diff --tags install
-   BECOME password:
-____
-PLAY [get base url] 
-TASK [Gathering Facts] 
-
-ok: [vector-01]
-____
-TASK [Get tar] 
-
-ok: [vector-01]
-____
-TASK [Extract archive] 
-
-ok: [vector-01]
-____
-
-TASK [Configure] 
---- before: /opt/vector/vector-x86_64-unknown-linux-gnu/config/vector.toml
-
-changed: [vector-01]
-____
-PLAY
-RECAP 
-vector-01                  : ok=4 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
-____
-
+ Лог находится в файле Ansible_log_8_task.txt
 9. ***Подготовьте README.md файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть
    параметры и теги.***
 ___Readme расположен в playbook/Readme_vector.md___
