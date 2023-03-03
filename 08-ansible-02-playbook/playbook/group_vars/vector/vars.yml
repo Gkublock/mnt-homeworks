@@ -2,5 +2,5 @@
 ansible_user: gkublock
 arch: x86_64
 version: 0.26.0
-dir_path: /tmp/
+dir_path: /tmp
 install_path: /opt/vector
